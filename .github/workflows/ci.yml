@@ -42,6 +42,9 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           script: |
             whoami
+            hostname
+            pwd
+            docker ps -a
             echo "Login to Docker Hub..."
             echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
             
