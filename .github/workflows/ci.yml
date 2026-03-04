@@ -23,5 +23,19 @@ jobs:
       - name: compose up containers
         run: docker compose up -d
 
+      - name: Wait for server to be ready
+        run: |
+          echo "Waiting for server to start..."
+          for i in {1..30}; do
+            if curl -s localhost:3000/api > /dev/null 2>&1; then
+              echo "Server is ready!"
+              exit 0
+            fi
+            echo "Attempt $i/30 - Server not ready yet, waiting..."
+            sleep 2
+          done
+          echo "Server failed to start within timeout"
+          exit 1
+
       - name: Test API
         run: curl localhost:3000/api
