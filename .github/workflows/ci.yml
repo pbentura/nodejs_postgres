@@ -19,3 +19,9 @@ jobs:
 
       - name: Build containers
         run: docker compose build
+
+      - name: compose up containers
+        run: docker compose up -d
+
+      - name: Test API
+        run: curl localhost:3000/api
