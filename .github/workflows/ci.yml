@@ -49,13 +49,13 @@ jobs:
             echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
             
             echo "Pull latest image..."
-            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/poulet:latest
+            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/my-app-backend:latest
             
             echo "Stop existing container if running..."
             docker stop poulet || true
             docker rm poulet || true
             
             echo "Run new container..."
-            docker run -d --name poulet -p 3002:3000 ${{ secrets.DOCKERHUB_USERNAME }}/poulet:latest
+            docker run -d --name poulet -p 3002:3000 ${{ secrets.DOCKERHUB_USERNAME }}/my-app-backend:latest
             
             echo "Deployment completed!"
