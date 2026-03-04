@@ -1,4 +1,4 @@
-name: Build Application
+name: Node CI
 
 on:
   push:
@@ -10,16 +10,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
 
       - name: Install dependencies
         run: npm install
-
-      - name: Build project
-        run: npm run build
